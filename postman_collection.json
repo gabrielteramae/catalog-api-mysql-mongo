@@ -1,0 +1,136 @@
+{
+  "info": {
+    "name": "Catalog API - MySQL + MongoDB",
+    "description": "Colecao de testes para a API de catalogo de produtos (MySQL) com avaliacoes (MongoDB)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "product_id",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Create product",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Teclado Mecanico\",\n  \"category\": \"Perifericos\",\n  \"price\": 350.00,\n  \"stock\": 20\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": ["{{base_url}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "List products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": ["{{base_url}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Get product by id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["products", "{{product_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Create review",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_name\": \"Ana\",\n  \"rating\": 5,\n  \"comment\": \"Excelente produto!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/{{product_id}}/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["products", "{{product_id}}", "reviews"]
+            }
+          }
+        },
+        {
+          "name": "List reviews for product",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/{{product_id}}/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["products", "{{product_id}}", "reviews"]
+            }
+          }
+        },
+        {
+          "name": "Create review - invalid rating (expect 422)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_name\": \"Teste\",\n  \"rating\": 8\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/{{product_id}}/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["products", "{{product_id}}", "reviews"]
+            }
+          }
+        },
+        {
+          "name": "Create review on nonexistent product (expect 404)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_name\": \"Teste\",\n  \"rating\": 4\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/999999/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["products", "999999", "reviews"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
