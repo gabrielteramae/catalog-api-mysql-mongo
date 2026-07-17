@@ -5,7 +5,6 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?logo=mongodb&logoColor=white)
 ![Postman](https://img.shields.io/badge/Postman-collection-FF6C37?logo=postman&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue)
 
 API de catálogo de produtos usando **persistência políglota**: dados estruturados e relacionais no MySQL, dados flexíveis e de alto volume de escrita no MongoDB.
 
