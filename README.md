@@ -41,8 +41,8 @@ app/
 Precisa de um MySQL e um MongoDB rodando (local via Docker, ou serviços gerenciados como PlanetScale/MongoDB Atlas free tier).
 
 ```bash
-git clone <seu-repo>
-cd catalog-api
+git clone https://github.com/gabrielteramae/catalog-api-mysql-mongo.git
+cd catalog-api-mysql-mongo
 pip install -r requirements.txt
 
 export MYSQL_URL="mysql+pymysql://user:senha@localhost:3306/catalogo_db"
