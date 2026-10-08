@@ -3,8 +3,8 @@ from datetime import datetime
 
 
 class ProductCreate(BaseModel):
-    name: str
-    category: str
+    name: str = Field(min_length=1, max_length=120)
+    category: str = Field(min_length=1, max_length=80)
     price: float = Field(gt=0)
     stock: int = Field(ge=0)
 
