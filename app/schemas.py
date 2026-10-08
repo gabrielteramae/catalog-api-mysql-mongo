@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 from datetime import datetime
 
 
@@ -7,6 +7,14 @@ class ProductCreate(BaseModel):
     category: str = Field(min_length=1, max_length=80)
     price: float = Field(gt=0)
     stock: int = Field(ge=0)
+
+    @field_validator("name", "category")
+    @classmethod
+    def sem_branco(cls, value: str) -> str:
+        text = value.strip()
+        if not text:
+            raise ValueError("não pode ficar em branco")
+        return text
 
 
 class ProductRead(ProductCreate):
